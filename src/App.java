@@ -1,5 +1,19 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Salvadanaio s = new Salvadanaio();
+
+        Azione inserisciMonete = new Azione(s, true);
+        inserisciMonete.start();
+
+        Azione prelevaMonete = new Azione(s, false);
+        prelevaMonete.start();
+
+        System.out.println("I therads sono partiti");
+
+        inserisciMonete.join();
+        prelevaMonete.join();
+
+        System.out.println("I threads hanno finito");
+        System.out.println(Salvadanaio.monete);
     }
 }
